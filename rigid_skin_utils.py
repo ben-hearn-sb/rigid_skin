@@ -1,8 +1,8 @@
 import pymel.core as pm
-from PyQt4 import QtGui, QtCore
+from PySide import QtGui, QtCore
 import ast
 
-from rigid_skin import config
+import config
 
 def returnCellTarget(table=None, cell=None):
 	row = cell.row()
@@ -177,7 +177,11 @@ def preMarkChecks(table, cell, selectedObjects):
 def createListItem(text='', color=''):
 	item = QtGui.QListWidgetItem(text)
 	if color:
-		item.setTextColor(QtGui.QColor(color))
+		#item.setTextColor(QtGui.QColor(color))
+		color = QtGui.QColor(color)
+		brush = QtGui.QBrush()
+		brush.setColor(color)
+		brush.setStyle(QtCore.Qt.Dense7Pattern)
 	item.setSizeHint(QtCore.QSize(32,20))
 	return item
 

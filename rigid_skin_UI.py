@@ -16,11 +16,11 @@ except:
 	pass
 
 import pymel.core as pm
-from PyQt4 import QtCore, QtGui
-from rigid_skin import rigidbody_skinning_tool as RS
-from rigid_skin import rigid_skin_utils as RSU
-from rigid_skin import config
-from rigid_skin.rigid_skin_dialog import ProcessDialog
+from PySide import QtCore, QtGui
+import rigidbody_skinning_tool as RS
+import rigid_skin_utils as RSU
+import config
+from rigid_skin_dialog import ProcessDialog
 import traceback
 import ast
 

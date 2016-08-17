@@ -1,4 +1,4 @@
-from PyQt4 import QtGui, QtCore
+from PySide import QtGui, QtCore
 
 class ProcessDialog(QtGui.QDialog):
 	def __init__(self, parent=None, fixedHeight=-1, enableButton=False):
