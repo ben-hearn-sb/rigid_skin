@@ -12,6 +12,7 @@ try:
 	reload(RS)
 	reload(RSU)
 	reload(config)
+	reload(ProcessDialog)
 except:
 	pass
 
@@ -277,7 +278,8 @@ class RigidSkin(QtGui.QDialog):
 			skinObject = obj.split('|')[-1]
 			skinListObject = RSU.createListItem('    '+skinObject, color=color)
 			if not len(pm.ls(root+obj)):
-				skinListObject.setTextColor(QtGui.QColor('orange'))
+				#skinListObject.setTextColor(QtGui.QColor('orange'))
+				RSU.setWidgetBackground(item=skinListObject, color='orange')
 			tree.addItem(skinListObject)
 
 		RSU.resizeListWidget(listWidget=tree)
