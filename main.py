@@ -1,3 +1,4 @@
 import rigid_skin_UI
 
-rigid_skin_UI.main()
+def main():
+    rigid_skin_UI.main()
