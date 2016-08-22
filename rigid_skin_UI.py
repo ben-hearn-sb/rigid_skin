@@ -12,15 +12,16 @@ try:
 	reload(RS)
 	reload(RSU)
 	reload(config)
+	reload(ProcessDialog)
 except:
 	pass
 
 import pymel.core as pm
-from PyQt4 import QtCore, QtGui
-from rigid_skin import rigidbody_skinning_tool as RS
-from rigid_skin import rigid_skin_utils as RSU
-from rigid_skin import config
-from rigid_skin.rigid_skin_dialog import ProcessDialog
+from PySide import QtCore, QtGui
+import rigidbody_skinning_tool as RS
+import rigid_skin_utils as RSU
+import config
+from rigid_skin_dialog import ProcessDialog
 import traceback
 import ast
 
@@ -277,7 +278,8 @@ class RigidSkin(QtGui.QDialog):
 			skinObject = obj.split('|')[-1]
 			skinListObject = RSU.createListItem('    '+skinObject, color=color)
 			if not len(pm.ls(root+obj)):
-				skinListObject.setTextColor(QtGui.QColor('orange'))
+				#skinListObject.setTextColor(QtGui.QColor('orange'))
+				RSU.setWidgetBackground(item=skinListObject, color='orange')
 			tree.addItem(skinListObject)
 
 		RSU.resizeListWidget(listWidget=tree)

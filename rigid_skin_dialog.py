@@ -1,4 +1,5 @@
-from PyQt4 import QtGui, QtCore
+from PySide import QtGui, QtCore
+import rigid_skin_utils as RSU
 
 class ProcessDialog(QtGui.QDialog):
 	def __init__(self, parent=None, fixedHeight=-1, enableButton=False):
@@ -44,12 +45,17 @@ class ProcessDialog(QtGui.QDialog):
 		time = str(time)
 		processWidget = QtGui.QListWidgetItem(time + ': ' +process)
 		processWidget.setFlags(QtCore.Qt.ItemIsEnabled)
+		'''
 		if warning == True:
-			processWidget.setTextColor(QtGui.QColor('orange'))
+			#processWidget.setTextColor(QtGui.QColor('orange'))
+			RSU.setWidgetBackground(item=processWidget, color='orange')
 		if error == True:
-			processWidget.setTextColor(QtGui.QColor('red'))
+			#processWidget.setTextColor(QtGui.QColor('red'))
+			RSU.setWidgetBackground(item=processWidget, color='red')
 		if success == True:
-			processWidget.setBackgroundColor(QtGui.QColor('green'))
+			#processWidget.setBackgroundColor(QtGui.QColor('green'))
+			RSU.setWidgetBackground(item=processWidget, color='green')
+		'''
 		self.activityLog.addItem(processWidget)
 		self.activityLog.scrollToItem(processWidget)
 		QtGui.qApp.processEvents()

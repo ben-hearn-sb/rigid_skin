@@ -1,8 +1,8 @@
 import pymel.core as pm
-from PyQt4 import QtGui, QtCore
+from PySide import QtGui, QtCore
 import ast
 
-from rigid_skin import config
+import config
 
 def returnCellTarget(table=None, cell=None):
 	row = cell.row()
@@ -177,7 +177,8 @@ def preMarkChecks(table, cell, selectedObjects):
 def createListItem(text='', color=''):
 	item = QtGui.QListWidgetItem(text)
 	if color:
-		item.setTextColor(QtGui.QColor(color))
+		#item.setTextColor(QtGui.QColor(color))
+		setWidgetBackground(item=item, color=color)
 	item.setSizeHint(QtCore.QSize(32,20))
 	return item
 
@@ -188,6 +189,13 @@ def resizeListWidget(listWidget):
 	if height > 250:
 		height = 250
 	listWidget.setFixedHeight(height)
+
+def setWidgetBackground(item=None, color=''):
+	color = QtGui.QColor(color)
+	brush = QtGui.QBrush()
+	brush.setColor(color)
+	brush.setStyle(QtCore.Qt.Dense7Pattern)
+	item.setBackground(brush)
 
 def getExtraAttr(obj, attrName=''):
 	""" Returns the extra attribute we need """
