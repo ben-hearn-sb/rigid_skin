@@ -408,4 +408,5 @@ def main():
 		return
 	global myWindow
 	myWindow = RigidSkin()
+	myWindow.setObjectName(winName)
 	myWindow.show()
