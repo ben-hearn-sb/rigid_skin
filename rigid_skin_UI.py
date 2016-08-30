@@ -32,7 +32,7 @@ class RigidSkin(QtGui.QDialog):
 		#global skinningWindow
 		self.skinningWindow = QtGui.QDialog()
 		self.skinningWindow.resize(450, 600)
-		self.skinningWindow.setWindowTitle("Objects to skin")
+		self.skinningWindow.setWindowTitle("Rigid Master")
 		self.skinningWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
 		
 		# Master display is the table view that shows our 
@@ -403,9 +403,12 @@ class RigidSkin(QtGui.QDialog):
 		self.refreshUI()
 
 def main():
-	global window
-	window = RigidSkin()
-	window.show()
+	winName = 'RIGID_MASTER'
+	if pm.windows.window(winName, exists=True):
+		return
+	global myWindow
+	myWindow = RigidSkin()
+	myWindow.show()
 
 if __name__ == "__main__":
 	main()
