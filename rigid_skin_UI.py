@@ -30,10 +30,9 @@ class RigidSkin(QtGui.QDialog):
 		QtGui.QDialog.__init__(self)
 
 		#global skinningWindow
-		self.skinningWindow = QtGui.QDialog()
-		self.skinningWindow.resize(450, 600)
-		self.skinningWindow.setWindowTitle("Rigid Master")
-		self.skinningWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+		self.resize(450, 600)
+		self.setWindowTitle("Rigid Master")
+		self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
 		
 		# Master display is the table view that shows our 
 		self.masterDisplay = QtGui.QTableWidget()
@@ -86,7 +85,7 @@ class RigidSkin(QtGui.QDialog):
 		masterLayout.addLayout(buttonsGrid)
 		masterLayout.addWidget(self.rigidSkinDialog)
 
-		self.skinningWindow.setLayout(masterLayout)
+		self.setLayout(masterLayout)
 		self.setupTargetRows(self.masterDisplay)
 
 		# Class globals
@@ -99,9 +98,10 @@ class RigidSkin(QtGui.QDialog):
 		btnRetarget.clicked.connect     (lambda: self.retargetRoot(cells=self.masterDisplay.selectedItems()))
 		btnSkin.clicked.connect			(lambda: self.skinSelection(self.masterDisplay, self.masterDisplay.selectedItems()))
 
-	def show(self):
-		self.skinningWindow.show()
-
+	def closeEvent(self, event):
+		""" On close we are removing the Qt window from memory """
+		self.deleteLater()
+		event.accept()
 
 
 	# Need to plug this in and debug
@@ -405,6 +405,7 @@ class RigidSkin(QtGui.QDialog):
 def main():
 	winName = 'RIGID_MASTER'
 	if pm.windows.window(winName, exists=True):
+		print 'Window already exists'
 		return
 	global myWindow
 	myWindow = RigidSkin()
